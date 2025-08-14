@@ -3,19 +3,21 @@ from src.config import settings
 
 supabase = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
 
-def insert_row(table_name, name, phone_number):
-    _ = (
-        supabase.table(table_name)
-        .insert({"name": name, "phone_number": phone_number})
+def get_all_contacts(table_name, size_limit=3):
+    resp = (
+        supabase.table("contacts")
+        .select("*", count="exact")
+        .limit(size_limit)
         .execute()
     )
 
-def select_all(table_name):
-    return (    
-        supabase.table(table_name)
-        .select("*")
-        .execute())
+    if (resp.count < 1):
+        print('Não há contatos no db')
+        return []
+
+    return resp.data
+    
 
 
 if __name__ == "__main__":
-    pass
+    get_all_contacts('contact')

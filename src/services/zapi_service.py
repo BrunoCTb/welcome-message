@@ -6,7 +6,7 @@ def send_message(message_text, phone_number):
 
     headers = {
         "Content-Type": "application/json",
-        "Client-Token": "Fdcd37494646b4927b54a73650e02906aS"
+        "Client-Token": settings.ZAPI_CLIENT_TOKEN
     }
     
     payload = {
@@ -17,10 +17,10 @@ def send_message(message_text, phone_number):
     response = requests.post(url, headers=headers, json=payload)
 
     if response.status_code == 200:
-        print("Message sent successfully!")
+        print("enviooou msg! => {" + message_text + "}")
         print(response.json())
     else:
-        print(f"Error sending message: {response.status_code} - {response.text}")
+        print(f"erro na msg: {response.status_code} ==> {response.text}")
 
     return response
     

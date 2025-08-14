@@ -2,6 +2,7 @@
 ### Descrição
 
 Projeto em Python que busca contatos cadastrados no Supabase e envia mensagens personalizadas via Z-API.
+
 Cada mensagem é enviada no formato específico:
 
 ```
@@ -22,11 +23,46 @@ $ Olá {{name}}, tudo bem com você?
 $ git clone https://github.com/BrunoCTb/welcome-message
 ```
 
-### 2. Instale as dependências
+### 2. Crie o Ambiente virtual do python (venv)
+
+```
+$ python -m venv /path/to/new/virtual/environment
+```
+
+ex: "python -m venv ./venv" (coloque a pasta e o "apelido" do venv)
+
+### 3. Ative o Ambiente virtual
+
+#### Linux/Mac OS
+
+```
+$ source venv/bin/activate
+```
+
+
+#### Windows
+
+cmd
+```
+$ .\venv\Scripts\activate.bat
+```
+powershell
+```
+$ .\venv\Scripts\activate.ps1
+```
+
+no windows pode ocorrer algum tipo de erro (principalmente no vscode com powershell) que pode ser resolvido na [documentação oficial](https://docs.python.org/3/library/venv.html).
+
+### 4. Instale as dependências
 ```
 $ pip install -r requirements.txt
 ```
 
+Pode checar se tudo ocorreu corretamente
+
+```
+$ pip freeze
+```
 
 ## Funcionamento
 
@@ -35,14 +71,14 @@ $ pip install -r requirements.txt
 Cada usuário que for rodar o projeto precisa criar a própria instância Z-API e escanear o QR code.
 A instância do seu projeto não será compartilhável para envio de mensagens de terceiros.
 
-### Crie a tabela no *Supabase* contacts com os seguintes campos:
+### No Supabese crie a tabela com o nome *contacts* com os seguintes campos:
 
-| Name | Type | Default Value | Primary Key |
-| -- | -- | -- | -- |
-| id | int8 | | true |
-| name | varchar | 
-| phone_number | varchar | | |
-| created_at | timestamp | now() |
+| Name | Type | Default Value | Primary Key | Config |
+| -- | -- | -- | -- | -- |
+| id | int8 | | true | |
+| name | varchar | | |
+| phone_number | varchar | | | IsUnique |
+| created_at | timestamp | now() | |
 
 
 ### Exemplo de dados fictícios:
@@ -56,11 +92,14 @@ A instância do seu projeto não será compartilhável para envio de mensagens d
 ### Crie um arquivo .env na raiz do projeto:
 
 ```
-SUPABASE_URL=https://your-supabase-url.supabase.co
-SUPABASE_KEY="
-ZAPI_INSTANCE_ID= 
-ZAPI_INSTANCE_TOKEN= 
-ZAPI_CLIENT_TOKEN=
+SUPABASE_URL="https://your-supabase-url.supabase.co"
+
+# secret api key
+SUPABASE_KEY=""
+
+ZAPI_INSTANCE_ID=""
+ZAPI_INSTANCE_TOKEN=""
+ZAPI_CLIENT_TOKEN=""
 ```
 
 ## Para rodar

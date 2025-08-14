@@ -104,7 +104,7 @@ ZAPI_CLIENT_TOKEN=""
 
 ## Para rodar
 ```
-$ python main.py
+$ python app.py
 ```
 
 - O script buscará até 3 contatos na tabela do Supabase e enviará a mensagem personalizada para cada um.

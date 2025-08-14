@@ -23,6 +23,12 @@ $ Olá {{name}}, tudo bem com você?
 $ git clone https://github.com/BrunoCTb/welcome-message
 ```
 
+ou com ssh
+
+```
+$ git clone git@github.com:BrunoCTb/welcome-message.git
+```
+
 ### 2. Crie o Ambiente virtual do python (venv)
 
 ```
